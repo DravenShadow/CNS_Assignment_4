@@ -1,13 +1,27 @@
+"""
+
+        Author: Rowland DePree                                      Motion_Detector.py
+
+        This is a program designed to alert a user to movements in the camera.  It will make a beep sound and send a text
+        message off to the user if motion is detected.
+
+"""
+
 import argparse
 import datetime
-import imutils
-import time
-import cv2
 import smtplib
+import time
 import winsound
+
+import cv2
+import imutils
 
 
 def send_message():
+    """
+    This ia method design to send a text message to the owner of the camera
+    :return:
+    """
     server = smtplib.SMTP("smtp.gmail.com", 587)
     server.starttls()
     server.login('motion.sensor.from.laptop@gmail.com', 'testing@123')
@@ -17,6 +31,11 @@ def send_message():
 
 
 def main():
+    """
+    This is the main program.  It is what detects the motion on the camera and alarms if motion is detected.  The original form of this was
+    obtain from: http://www.pyimagesearch.com/2015/05/25/basic-motion-detection-and-tracking-with-python-and-opencv/
+    :return:
+    """
     alarm = False
     ap = argparse.ArgumentParser()
     ap.add_argument("--v", "--video", help="path to the video file")
@@ -74,5 +93,8 @@ def main():
     cv2.destoryAllWindows()
 
 
+"""
+    Starts the main program
+"""
 if __name__ == '__main__':
     main()
